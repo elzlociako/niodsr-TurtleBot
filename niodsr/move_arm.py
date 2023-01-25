@@ -19,11 +19,11 @@ def default_view():
     return img
 
 default_img = default_view()
-
+set_direction=0.0
 class Publisher(Node):
     def __init__(self):
         super().__init__('pub')
-        self.publisher_ = self.create_publisher(Twist, '/turtle1/cmd_vel', 1)
+        self.publisher_ = self.create_publisher(Twist, '/cmd_vel', 1)
         timer_period = 0.5  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
         self.i = 0
@@ -64,8 +64,7 @@ class Publisher(Node):
         self.get_logger().info(f'ACTUAL SPEED: {set_direction}')
         self.i += 1
 
-        cv2.waitKey(1)
-        
+        cv2.waitKey(1)       
 
 
 def main(args=None):
